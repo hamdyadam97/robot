@@ -126,9 +126,8 @@ class UserPasswordResetSerializer(serializers.Serializer):
         try:
             password = attrs.get('password')
             password2 = attrs.get('password2')
-            print("saadasdasd")
+
             uid = self.context.get('uid')
-            print(uid)
 
             token = self.context.get('token')
             if password != password2:

@@ -1,10 +1,7 @@
 import os
 import random
 import youtube_dl
-import moviepy.editor as ed
-from django.shortcuts import render
 from rest_framework import generics, status, permissions
-from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from .models import ConvertAudio
 from convertapp.serializer import ConvertAudioSerializer
@@ -12,8 +9,11 @@ from pytube import YouTube
 import ffmpeg
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+
+
 gauth = GoogleAuth()
 drive = GoogleDrive(gauth)
+
 
 class ConvertAudioView(generics.GenericAPIView):
     serializer_class = ConvertAudioSerializer
