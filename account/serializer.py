@@ -6,7 +6,6 @@ from rest_framework import serializers
 from django.utils.encoding import smart_str, force_bytes, DjangoUnicodeDecodeError
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-# from account.utils import Util
 from rest_framework.response import Response
 from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.validators import UniqueValidator
@@ -129,7 +128,7 @@ class UserPasswordResetSerializer(serializers.Serializer):
 
             uid = self.context.get('uid')
 
-            token = self.context.get('token')
+            token = self.con1text.get('token')
             if password != password2:
                 raise serializers.ValidationError("Password and Confirm Password doesn't match")
             id = smart_str(urlsafe_base64_decode(uid))

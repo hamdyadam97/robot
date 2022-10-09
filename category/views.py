@@ -1,5 +1,5 @@
 from rest_framework import generics, status, permissions,filters
-from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import ListAPIView, ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
 from rest_framework.response import Response
 
 from category.models import Category, Post
@@ -14,15 +14,11 @@ class TheCategory(ListAPIView):
     filterset_fields = ['name','the_type']
 
 
-class ThePost(ListCreateAPIView):
+class ThePost(CreateAPIView):
     serializer_class = PostSerializer
     permission_classes = (permissions.IsAuthenticated,)
     def perform_create(self, serializer):
         return serializer.save()
-
-    def get_queryset(self):
-        print(self.category)
-        return self.queryset.filter(category=self.category)
 
 
 class PostUpdateView(RetrieveUpdateAPIView):
@@ -31,8 +27,6 @@ class PostUpdateView(RetrieveUpdateAPIView):
     queryset = Post.objects.all()
     lookup_field = "id"
 
-    # def get_queryset(self):
-    #     return self.queryset.filter(category=self.category)
 
 
 class SearchPostView(ListAPIView):

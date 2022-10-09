@@ -23,8 +23,8 @@ class ConvertAudioView(generics.GenericAPIView):
         user = request.data
         serializer = self.serializer_class(data=user)
         serializer.is_valid(raise_exception=True)
-        video = user['link_video']
-        video_url = video
+        # video = user['link_video']
+        video_url = user['link_video']
         video_info = youtube_dl.YoutubeDL().extract_info(url=video_url, download=False)
         x = random.randint(1, 999)
         filename = f"{x}.mp3"
