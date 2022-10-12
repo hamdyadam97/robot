@@ -112,11 +112,11 @@ SWAGGER_SETTINGS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'df2id92us3dbkj',
-        'USER': 'rowuiorzijreln',
-        'PASSWORD': 'efdb990ada99fe4398a664e38ddc92f02895fc900aa16bd0c73fbe04c19e2c17',
-        'HOST': 'ec2-3-223-169-166.compute-1.amazonaws.com',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'wyspp',
+        'USER': 'postgres',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -157,8 +157,8 @@ USE_TZ = True
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hamdyadam543@gmail.com'
-EMAIL_HOST_PASSWORD = 'lqaieoquyhowwozw'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'

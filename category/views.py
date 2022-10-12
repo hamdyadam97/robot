@@ -23,8 +23,10 @@ class ThePost(CreateAPIView):
 
 class PostUpdateView(RetrieveUpdateAPIView):
     serializer_class = PostSerializer
+
     permission_classes = (permissions.IsAuthenticated,)
     queryset = Post.objects.all()
+    print(queryset)
     lookup_field = "id"
 
 
