@@ -100,3 +100,12 @@ class SearchPostView(ListAPIView):
 
 
 
+class ProductOrderUpdateView(RetrieveUpdateAPIView):
+    serializer_class = ProductSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    queryset = Product.objects.all()
+    lookup_field = "id"
+    def perform_update(self, serializer):
+        order = Product.objects.get(id=self.lookup_field)
+        num = order.count - self.request.data['count']
+        serializer.save(count=num)
