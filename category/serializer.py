@@ -1,15 +1,23 @@
 from rest_framework import serializers
-from .models import Category, Post
+from .models import Category, Product, ImageProduct
 
 
 class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ['__all__']
 
-class PostSerializer(serializers.ModelSerializer):
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImageProduct
+        fields = ['image',]
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    product = ImageSerializer(many=True)
 
     class Meta:
-        model = Post
+        model = Product
         fields = '__all__'

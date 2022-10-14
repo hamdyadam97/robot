@@ -1,7 +1,7 @@
 from rest_framework.response import Response
-from rest_framework import status, generics
+from rest_framework import status, generics, permissions
 from .serializer import UserRegistrationSerializer, UserLoginSerializer, UserProfileSerializer, \
-  UserChangePasswordSerializer, SendPasswordResetEmailSerializer, UserPasswordResetSerializer
+  UserChangePasswordSerializer, SendPasswordResetEmailSerializer, UserPasswordResetSerializer, ProfileSerializer
 from django.contrib.auth import authenticate
 from account.renderers import UserRenderer
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -83,4 +83,13 @@ class UserPasswordResetView(generics.GenericAPIView):
     return Response({'msg':'Password Reset Successfully'}, status=status.HTTP_200_OK)
 
 
+class CreateProfile(generics.GenericAPIView):
+  serializer_class = ProfileSerializer
+  renderer_classes = [UserRenderer]
+  permission_classes = (permissions.IsAuthenticated,)
+  def post(self, request):
+    serializer = self.serializer_class(usser=request.user, data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+    return Response({'msg': 'Registration Successful'},  status=status.HTTP_201_CREATED)
 

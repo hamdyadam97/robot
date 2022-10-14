@@ -51,9 +51,6 @@ INSTALLED_APPS = [
     'django_filters',
     'account.apps.AccountConfig',
     'category.apps.CategoryConfig',
-    'convertapp.apps.ConvertappConfig',
-
-
 ]
 
 MIDDLEWARE = [
@@ -112,8 +109,8 @@ SWAGGER_SETTINGS = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'wyspp',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'robots',
         'USER': 'postgres',
         'PASSWORD': '123',
         'HOST': 'localhost',
@@ -168,10 +165,13 @@ DEFAULT_FROM_EMAIL = 'default from email'
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 
-# MEDIA_URL = 'media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 # STATICFILES_DIRS = [BASE_DIR/'static/']
 django_heroku.settings(locals())
 SIMPLE_JWT = {
