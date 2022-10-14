@@ -6,7 +6,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['__all__']
+        fields = '__all__'
 
 
 class ImageSerializer(serializers.ModelSerializer):
